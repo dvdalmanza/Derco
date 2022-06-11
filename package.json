@@ -13,7 +13,10 @@
     "@react-native-async-storage/async-storage": "^1.17.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-picker/picker": "^2.4.1",
+    "@react-navigation/bottom-tabs": "5.11.8",
     "@react-navigation/drawer": "5.12.4",
+    "@react-navigation/material-bottom-tabs": "5.3.14",
+    "@react-navigation/material-top-tabs": "5.3.14",
     "@react-navigation/native": "5.9.3",
     "@react-navigation/stack": "5.14.3",
     "axios": "0.27.2",
@@ -21,9 +24,13 @@
     "react-native": "0.68.2",
     "react-native-gesture-handler": "1.10.3",
     "react-native-image-picker": "^4.8.3",
+    "react-native-pager-view": "5.0.12",
+    "react-native-paper": "4.7.2",
     "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "3.2.0",
-    "react-native-screens": "2.18.1"
+    "react-native-screens": "2.18.1",
+    "react-native-tab-view": "3.0.0",
+    "react-native-vector-icons": "8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -31,6 +38,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.67.3",
+    "@types/react-native-vector-icons": "^6.4.10",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",

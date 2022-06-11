@@ -67,7 +67,6 @@ export const ProductsScreen = ({navigation}: Props) => {
           />
         }
       />
-      <Button title="logout" color="#F53910" onPress={logOut} />
     </View>
   );
 };

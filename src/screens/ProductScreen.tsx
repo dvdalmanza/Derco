@@ -50,7 +50,9 @@ export const ProductScreen = ({navigation, route}: Props) => {
   }, []);
 
   const loadProduct = async () => {
-    if (id.length === 0) return;
+    if (id.length === 0) {
+      return;
+    }
     const product = await loadProductById(id);
     setFormValue({
       _id: id,
@@ -130,25 +132,16 @@ export const ProductScreen = ({navigation, route}: Props) => {
             <Picker.Item label={c.nombre} value={c._id} key={c._id} />
           ))}
         </Picker>
-        <Button title="Guardar" onPress={saveOrUpdate} color="#F53910" />
-
-        {_id.length > 0 && (
-          <View
+        {/* TODO: Mostrar imagen temporal */}
+        {tempUri && (
+          <Image
+            source={{uri: tempUri}}
             style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              marginTop: 10,
-            }}>
-            <Button title="Cámara" onPress={takePhoto} color="#F53910" />
-
-            <View style={{width: 10}} />
-
-            <Button
-              title="Galería"
-              onPress={takePhotoFromGallery}
-              color="#F53910"
-            />
-          </View>
+              marginTop: 20,
+              width: '100%',
+              height: 300,
+            }}
+          />
         )}
 
         {img.length > 0 && !tempUri && (
@@ -162,16 +155,26 @@ export const ProductScreen = ({navigation, route}: Props) => {
           />
         )}
 
-        {/* TODO: Mostrar imagen temporal */}
-        {tempUri && (
-          <Image
-            source={{uri: tempUri}}
+        <View style={{width: 10, marginTop: 10}} />
+
+        <Button title="Guardar" onPress={saveOrUpdate} color="#5856D6" />
+        {_id.length > 0 && (
+          <View
             style={{
-              marginTop: 20,
-              width: '100%',
-              height: 300,
-            }}
-          />
+              flexDirection: 'row',
+              justifyContent: 'center',
+              marginTop: 10,
+            }}>
+            <Button title="Cámara" onPress={takePhoto} color="#5856D6" />
+
+            <View style={{width: 10}} />
+
+            <Button
+              title="Galería"
+              onPress={takePhotoFromGallery}
+              color="#5856D6"
+            />
+          </View>
         )}
       </ScrollView>
     </View>

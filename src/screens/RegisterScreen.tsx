@@ -50,7 +50,7 @@ export const RegisterScreen = ({navigation}: Props) => {
   return (
     <>
       <KeyboardAvoidingView
-        style={{flex: 1, backgroundColor: '#F53910'}}
+        style={{flex: 1, backgroundColor: '#5856D6'}}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={loginStyles.formContainer}>
           {/* Keyboard avoid view */}

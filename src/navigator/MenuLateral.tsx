@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   createDrawerNavigator,
@@ -16,7 +16,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {styles} from '../theme/appTheme';
-import {ProductsNavigator} from './ProductsNavigator';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {Tabs} from './Tabs';
+import {AuthContext} from '../context/AuthContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -27,7 +29,7 @@ export const MenuLateral = () => {
     <Drawer.Navigator
       drawerType={width >= 768 ? 'permanent' : 'front'}
       drawerContent={props => <MenuInterno {...props} />}>
-      <Drawer.Screen name="ProductsNavigator" component={ProductsNavigator} />
+      <Drawer.Screen name="Tabs" component={Tabs} />
       <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
     </Drawer.Navigator>
   );
@@ -36,6 +38,8 @@ export const MenuLateral = () => {
 const MenuInterno = ({
   navigation,
 }: DrawerContentComponentProps<DrawerContentOptions>) => {
+
+  const {logOut} = useContext(AuthContext);
   return (
     <DrawerContentScrollView>
       {/* Parte del avatar */}
@@ -51,15 +55,23 @@ const MenuInterno = ({
       {/* Opciones de menú */}
       <View style={styles.menuContainer}>
         <TouchableOpacity
-          style={styles.menuBoton}
-          onPress={() => navigation.navigate('ProductsNavigator')}>
+          style={{...styles.menuBoton,flexDirection: 'row'}}
+          onPress={() => navigation.navigate('Tabs')}>
+          <Icon name="compass-outline" size={23} color="black" />
           <Text style={styles.menuTexto}>Navegacion</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.menuBoton}
+          style={{...styles.menuBoton,flexDirection: 'row'}}
           onPress={() => navigation.navigate('SettingsScreen')}>
+          <Icon name="cog-outline" size={23} color="black" />
           <Text style={styles.menuTexto}>Ajustes</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{...styles.menuBoton,flexDirection: 'row'}}
+          onPress={logOut}>
+          <Icon name="exit-outline" size={23} color="black" />
+          <Text style={styles.menuTexto}>Cerrar Sesion</Text>
         </TouchableOpacity>
       </View>
     </DrawerContentScrollView>
