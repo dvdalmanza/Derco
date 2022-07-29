@@ -1,26 +1,42 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {ImagePickerResponse} from 'react-native-image-picker';
 import dercoApi from '../api/dercoApi';
-import {Producto, ProductsResponse} from '../interfaces/appInterfaces';
+import {
+  Cotizacion,
+  Producto,
+  ProductsResponse,
+} from '../interfaces/appInterfaces';
 
 type ProductsContextProps = {
   products: Producto[];
   loadProducts: () => Promise<void>;
-  addProduct: (categoryId: string, productName: string) => Promise<Producto>;
+  addProduct: (
+    categoryId: string,
+    productName: string,
+    precio: number,
+  ) => Promise<Producto>;
   updateProduct: (
     categoryId: string,
     productName: string,
     productId: string,
+    precio: number,
   ) => Promise<void>;
   deleteProduct: (id: string) => Promise<void>;
   loadProductById: (id: string) => Promise<Producto>;
   uploadImage: (data: any, id: string) => Promise<void>; // TODO: cambiar ANY
+  addCotizacion: (
+    cuotas: string,
+    cuotaInicial: number,
+    cuotaMensual: number,
+    _id: string,
+  ) => Promise<Cotizacion>;
 };
 
 export const ProductsContext = createContext({} as ProductsContextProps);
 
 export const ProductsProvider = ({children}: any) => {
   const [products, setProducts] = useState<Producto[]>([]);
+  const [cotizar, setCotizar] = useState<Cotizacion[]>([]);
 
   useEffect(() => {
     loadProducts();
@@ -34,13 +50,14 @@ export const ProductsProvider = ({children}: any) => {
   const addProduct = async (
     categoryId: string,
     productName: string,
+    precio: number,
   ): Promise<Producto> => {
     const resp = await dercoApi.post<Producto>('/productos', {
       nombre: productName,
       categoria: categoryId,
+      precio: precio,
     });
     setProducts([...products, resp.data]);
-
     return resp.data;
   };
 
@@ -48,10 +65,12 @@ export const ProductsProvider = ({children}: any) => {
     categoryId: string,
     productName: string,
     productId: string,
+    precio: number,
   ) => {
     const resp = await dercoApi.put<Producto>(`/productos/${productId}`, {
       nombre: productName,
       categoria: categoryId,
+      precio: precio,
     });
     setProducts(
       products.map(prod => {
@@ -92,6 +111,23 @@ export const ProductsProvider = ({children}: any) => {
     }
   };
 
+  const addCotizacion = async (
+    cuotas: string,
+    cuotaInicial: number,
+    cuotaMensual: number,
+    _id: string,
+  ): Promise<Cotizacion> => {
+    //console.log("¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿",cuotas, cuotaInicial, cuotaMensual, _id);
+    const resp = await dercoApi.post<Cotizacion>('/cotizaciones', {
+      cuotas,
+      cuotaInicial: cuotaInicial,
+      cuotaMensual: cuotaMensual,
+      producto: _id,
+    });
+    setCotizar([...cotizar, resp.data]);
+    return resp.data;
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -102,6 +138,7 @@ export const ProductsProvider = ({children}: any) => {
         deleteProduct,
         loadProductById,
         uploadImage,
+        addCotizacion,
       }}>
       {children}
     </ProductsContext.Provider>

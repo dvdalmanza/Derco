@@ -22,7 +22,7 @@ interface Props
   extends StackScreenProps<ProductsStackParams, 'ProductScreen'> {}
 
 export const ProductScreen = ({navigation, route}: Props) => {
-  const {id = '', name = ''} = route.params;
+  const {id = '', name = '', price = ''} = route.params;
 
   const [tempUri, setTempUri] = useState<string>();
 
@@ -30,14 +30,14 @@ export const ProductScreen = ({navigation, route}: Props) => {
   const {loadProductById, addProduct, updateProduct, uploadImage} =
     useContext(ProductsContext);
 
-  const {_id, categoriaId, nombre, img, form, onChange, setFormValue} = useForm(
-    {
+  const {_id, categoriaId, nombre, img, precio, form, onChange, setFormValue} =
+    useForm({
       _id: id,
       categoriaId: '',
       nombre: name,
       img: '',
-    },
-  );
+      precio: price,
+    });
 
   useEffect(() => {
     navigation.setOptions({
@@ -59,15 +59,16 @@ export const ProductScreen = ({navigation, route}: Props) => {
       categoriaId: product.categoria._id,
       img: product.img || '',
       nombre,
+      precio: product.precio,
     });
   };
 
   const saveOrUpdate = async () => {
     if (id.length > 0) {
-      updateProduct(categoriaId, nombre, id);
+      updateProduct(categoriaId, nombre, id, precio);
     } else {
       const tempCategoriaId = categoriaId || categories[0]._id;
-      const newProduct = await addProduct(tempCategoriaId, nombre);
+      const newProduct = await addProduct(tempCategoriaId, nombre, precio);
       onChange(newProduct._id, '_id');
     }
   };
@@ -115,14 +116,20 @@ export const ProductScreen = ({navigation, route}: Props) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.label}>Nombre del producto:</Text>
+        <Text style={styles.label}>Nombre del carro:</Text>
         <TextInput
-          placeholder="Producto"
+          placeholder="Nombre"
           style={styles.textInput}
           value={nombre}
           onChangeText={value => onChange(value, 'nombre')}
         />
-
+        <Text style={styles.label}>Precio del carro:</Text>
+        <TextInput
+          placeholder="Precio"
+          style={styles.textInput}
+          value={precio.toString()}
+          onChangeText={value => onChange(value, 'precio')}
+        />
         {/* Picker / Selector */}
         <Text style={styles.label}>Categoría:</Text>
         <Picker

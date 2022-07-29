@@ -2,10 +2,12 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {ProductScreen} from '../screens/ProductScreen';
 import {ProductsScreen} from '../screens/ProductsScreen';
+import {Tab1Screen} from '../screens/Tab1Screen';
 
 export type ProductsStackParams = {
   ProductsScreen: undefined;
-  ProductScreen: {id?: string; name?: string};
+  ProductScreen: {id?: string; name?: string; price?: number};
+  Tab1Screen: {id?: string; name?: string; price?: number };
 };
 
 const Stack = createStackNavigator<ProductsStackParams>();
@@ -25,10 +27,10 @@ export const ProductsNavigator = () => {
       <Stack.Screen
         name="ProductsScreen"
         component={ProductsScreen}
-        options={{title: 'Productos'}}
+        options={{title: 'Automoviles'}}
       />
-
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen name="Tab1Screen" component={Tab1Screen} />
     </Stack.Navigator>
   );
 };

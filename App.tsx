@@ -17,7 +17,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppState>
-        <Navigator/>
+        <Navigator />
       </AppState>
     </NavigationContainer>
   );

@@ -45,17 +45,17 @@ const TabsAndroid = () => {
       })}>
       <BottomTabAndroid.Screen
         name="ProductsNavigator"
-        options={{title: 'Navigator'}}
+        options={{title: 'Cotizar'}}
         component={ProductsNavigator}
       />
       <BottomTabAndroid.Screen
         name="Tab1Screen"
-        options={{title: 'Tab1'}}
+        options={{title: 'Autos'}}
         component={Tab1Screen}
       />
       <BottomTabAndroid.Screen
         name="Tab2Screen"
-        options={{title: 'Tab2'}}
+        options={{title: 'Opciones'}}
         component={TopTabNavigator}
       />
     </BottomTabAndroid.Navigator>
@@ -104,17 +104,17 @@ const TabsIOS = () => {
       {/* <Tab.Screen name="Tab1Screen" options={{ title: 'Tab1', tabBarIcon: (props) => <Text style={{ color: props.color }} >T1</Text> }} component={ Tab1Screen } /> */}
       <BottomTabIOS.Screen
         name="Tab1Screen"
-        options={{title: 'Tab1'}}
+        options={{title: 'Cotizar'}}
         component={Tab1Screen}
       />
       <BottomTabIOS.Screen
         name="Tab2Screen"
-        options={{title: 'Tab2'}}
+        options={{title: 'Opciones'}}
         component={TopTabNavigator}
       />
       <BottomTabIOS.Screen
         name="ProductsNavigator"
-        options={{title: 'Navigator'}}
+        options={{title: 'Autos'}}
         component={ProductsNavigator}
       />
     </BottomTabIOS.Navigator>
