@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {Platform} from 'react-native';
 
-import {Tab1Screen} from '../screens/Tab1Screen';
+import {CotizarScreen} from '../screens/CotizarScreen';
 
 import {colores} from '../theme/appTheme';
 import {TopTabNavigator} from './TopTabNavigator';
@@ -31,7 +31,7 @@ const TabsAndroid = () => {
             case 'ProductsNavigator':
               iconName = 'bookmarks-outline';
               break;
-            case 'Tab1Screen':
+            case 'CotizarScreen':
               iconName = 'bandage-outline';
               break;
 
@@ -49,9 +49,9 @@ const TabsAndroid = () => {
         component={ProductsNavigator}
       />
       <BottomTabAndroid.Screen
-        name="Tab1Screen"
+        name="CotizarScreen"
         options={{title: 'Autos'}}
-        component={Tab1Screen}
+        component={CotizarScreen}
       />
       <BottomTabAndroid.Screen
         name="Tab2Screen"
@@ -85,7 +85,7 @@ const TabsIOS = () => {
         tabBarIcon: ({color}) => {
           let iconName: string = '';
           switch (route.name) {
-            case 'Tab1Screen':
+            case 'CotizarScreen':
               iconName = 'bandage-outline';
               break;
 
@@ -103,9 +103,9 @@ const TabsIOS = () => {
       })}>
       {/* <Tab.Screen name="Tab1Screen" options={{ title: 'Tab1', tabBarIcon: (props) => <Text style={{ color: props.color }} >T1</Text> }} component={ Tab1Screen } /> */}
       <BottomTabIOS.Screen
-        name="Tab1Screen"
+        name="CotizarScreen"
         options={{title: 'Cotizar'}}
-        component={Tab1Screen}
+        component={CotizarScreen}
       />
       <BottomTabIOS.Screen
         name="Tab2Screen"

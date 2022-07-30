@@ -15,9 +15,9 @@ import {useProductos} from '../hooks/useProductos';
 import {ProductsContext} from '../context/ProductsContext';
 import {HeaderTitle} from '../components/HeaderTitle';
 
-interface Props extends StackScreenProps<ProductsStackParams, 'Tab1Screen'> {}
+interface Props extends StackScreenProps<ProductsStackParams, 'CotizarScreen'> {}
 
-export const Tab1Screen = ({route}: Props) => {
+export const CotizarScreen = ({route}: Props) => {
   const {productos} = useProductos();
 
   const {addCotizacion} = useContext(ProductsContext);

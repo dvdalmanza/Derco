@@ -7,7 +7,6 @@ import {ProductsContext} from '../context/ProductsContext';
 export const ChatScreen = () => {
   const {products} = useContext(ProductsContext);
   const [numbers, setNumbers] = useState(products ?? []);
-
   const loadMore = () => {
     const newArray: number[] = [];
     for (let i = 0; i < 5; i++) {
@@ -17,6 +16,7 @@ export const ChatScreen = () => {
       setNumbers([...numbers, ...newArray]);
     }, 1500);
   };
+  
   const renderItem = (item: any, index: number) => {
     return (
       <FadeInImage

@@ -20,7 +20,8 @@ interface Props
 
 export const ProductsScreen = ({navigation}: Props) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const {products, loadProducts} = useContext(ProductsContext);
+  const {loadCotizaciones, products, loadProducts} =
+    useContext(ProductsContext);
 
   const {user, token, logOut} = useContext(AuthContext);
 
@@ -37,6 +38,10 @@ export const ProductsScreen = ({navigation}: Props) => {
     });
   }, []);
 
+  useEffect(() => {
+    loadCotizaciones();
+  }, []);
+
   const loadProductsFromBackend = async () => {
     setIsRefreshing(true);
     await loadProducts();
@@ -45,6 +50,7 @@ export const ProductsScreen = ({navigation}: Props) => {
   return (
     <View style={{flex: 1, marginHorizontal: 10}}>
       <FlatList
+        style={{flex: 1}}
         data={products}
         keyExtractor={p => p._id}
         renderItem={({item}) => (
@@ -67,12 +73,16 @@ export const ProductsScreen = ({navigation}: Props) => {
           />
         }
       />
+      <View style={{paddingVertical: 10, alignItems: 'flex-end'}}>
+        {/* <Text>Total de Carros: {}</Text> */}
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   productName: {
     fontSize: 20,
+    color: '#2e2e2d',
   },
   itemSeparator: {
     borderBottomWidth: 2,

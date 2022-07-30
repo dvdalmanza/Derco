@@ -1,7 +1,7 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {ChatScreen} from '../screens/ChatScreen';
-import {ContactsScreen} from '../screens/ContactsScreen';
+import {CotizacionesScreen} from '../screens/CotizacionesScreen';
 import {AlbumsScreen} from '../screens/AlbumsScreen';
 
 import {LogBox} from 'react-native';
@@ -54,7 +54,7 @@ export const TopTabNavigator = () => {
         },
       })}>
       <Tab.Screen name="Catalogo de autos" component={ChatScreen} />
-      <Tab.Screen name="Cotizaciones" component={ContactsScreen} />
+      <Tab.Screen name="Cotizaciones" component={CotizacionesScreen} />
       <Tab.Screen name="Ayuda" component={AlbumsScreen} />
     </Tab.Navigator>
   );
